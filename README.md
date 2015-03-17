@@ -4,7 +4,6 @@ A web app to restore the bookmarks you encounter based on Flask.
 ##Installation##
 
   pip install flask
-  
   python index.py
   
   
