@@ -3,7 +3,6 @@
 __author__ = 'Huangyi' 
 
 import sqlite3, os
-ids = 1
 
 class LinkDB(object):
 	def __init__(self):
@@ -53,15 +52,13 @@ class LinkDB(object):
 		return users
 
 	def add_link(self, username, name, path, tag):
-		global ids
 		try:
-			#不同的用户，ids都会增加
-			#加链接有时候会出错，是不是全局变量ids的问题？使用事务？
 			userid = self.cursor.execute('SELECT userid FROM userinfo WHERE name=?', (username,)).fetchone()
-			self.cursor.execute('INSERT INTO userlink(linkid, userid) VALUES (?, ?)', (ids, userid[0]))
-			ids += 1
-			linkid = ids -1
-			self.cursor.execute('INSERT INTO linkinfo(linkid, linkname, path, tag) VALUES (?, ?, ?, ?)', (linkid, name, path, tag))
+			count = self.cursor.execute('SELECT COUNT(*) FROM userlink').fetchone()
+			rows = count[0]
+			rows += 1
+			self.cursor.execute('INSERT INTO userlink(linkid, userid) VALUES (?, ?)', (rows, userid[0]))
+			self.cursor.execute('INSERT INTO linkinfo(linkid, linkname, path, tag) VALUES (?, ?, ?, ?)', (rows, name, path, tag))
 			self.conn.commit()
 			return True
 		except:
