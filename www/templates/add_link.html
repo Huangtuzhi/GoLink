@@ -1,0 +1,21 @@
+{% extends "page.html" %}
+
+{% block content %}
+<h2>添加链接：</h2>
+<form class="form-inline" role="form" method="post" action="/addlink">
+  <div class="form-group">
+    <label >标题：</label>
+    <input type="text" class="form-control" name="name">
+  </div>
+  <div class="form-group">
+    <label>地址：</label>
+    <input type="text" class="form-control" name="path">
+  </div>
+  <div class="form-group">
+    <label>标签：</label>
+    <input type="text" class="form-control" name="tag">
+  </div>
+  <button type="submit" class="btn btn-default">添加</button>
+</form>
+
+{% endblock %}

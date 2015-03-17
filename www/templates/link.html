@@ -1,0 +1,26 @@
+{% extends "page.html" %}
+
+{% block content %}
+<div class='content'>
+<table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>名字</th>
+          <th>地址</th>
+          <th>标签</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for link in links %}
+        <tr>
+          <td>{{ link['linkid'] }}</td>
+          <td>{{ link['linkname'] }}</td>
+          <td>{{ link['path'] }}</td>
+          <td>{{ link['tag'] }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+</table>
+</div>
+{% endblock %}

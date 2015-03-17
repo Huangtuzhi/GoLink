@@ -1,0 +1,24 @@
+{% extends "page.html" %}
+
+{% block content %}
+<div class='content'>
+<table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>用户名</th>
+          <th>密码</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for user in users %}
+        <tr>
+          <td>{{ user['userid'] }}</td>
+          <td>{{ user['name'] }}</td>
+          <td>{{ user['password'] }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+</table>
+</div>
+{% endblock %}
